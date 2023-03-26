@@ -149,8 +149,10 @@ if __name__ == '__main__':
 					#ImportManga.processManga(root, indFiles, cur, file_id)
 				if re.search('^.*\.(sfv)', indFiles):
 					print('--------SFV Processing Found')
-				if re.search('^.*\.(mp4|mkv|avi)$', indFiles):
-					ImportVideo.processVideo(root, indFiles, file_id)
+				if re.search('^.*\.(mp4|mkv|avi|webm)$', indFiles):
+					magic = ImportVideo.processVideo(root, indFiles, file_id)
+					for sql in magic:
+						cur.execute(sql)
 
 		#print('   Completed ' + str(totalFileAdded) + ' files')	
 		conn.commit()
