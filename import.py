@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/local/bin/python3
 #
 # Manga Inventory
 #
@@ -12,12 +12,10 @@ import os, sys
 import sqlite3
 import hashlib
 import re, zipfile
-import cv2
 import zlib
-import numpy as np
 from multiprocessing import Process, Queue
-import cv2
 import ImportManga
+import ImportVideo
 
 acceptableResList = [1200,1400,1500,1600,1800,1920,2000,2400,2500,2880,3000,3200]
 
@@ -99,11 +97,6 @@ def sqlFileInsert(fullName):
 	file_id = cur.fetchone()[0]
 	return file_id
 
-
-def processVideo(filename):
-	print("Starting processing " + filename)
-	return
-
 #Start of main
 #---------------------------------------
 
@@ -116,9 +109,9 @@ if __name__ == '__main__':
 
 	conn = None
 	try:
-		conn = sqlite3.connect('manga2.sqldb')
+		conn = sqlite3.connect('data.sqldb')
 	except Error:
-		print('DB connect issue.')
+		print('Database not found. Place data.sqldb in folder or run "make clean"')
 		quit()
 
 	cur = conn.cursor()
@@ -156,8 +149,8 @@ if __name__ == '__main__':
 					#ImportManga.processManga(root, indFiles, cur, file_id)
 				if re.search('^.*\.(sfv)', indFiles):
 					print('--------SFV Processing Found')
-				if re.search('^.*\.(mp4|mkv|avi)', indFiles):
-					processVideo(indFiles)
+				if re.search('^.*\.(mp4|mkv|avi)$', indFiles):
+					ImportVideo.processVideo(root, indFiles, file_id)
 
 		#print('   Completed ' + str(totalFileAdded) + ' files')	
 		conn.commit()

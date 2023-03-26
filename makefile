@@ -14,6 +14,6 @@ macos:
 clean:
 	@echo 'Erasing all data in inventory...'
 	@echo ' '
-	touch inventory.sqldb
-	rm inventory.sqldb
-	sqlite3 inventory.sqldb < sql.txt
+	touch data.sqldb
+	rm data.sqldb
+	sqlite3 data.sqldb < sql2.sql
