@@ -152,6 +152,7 @@ if __name__ == '__main__':
 				if re.search('^.*\.(mp4|mkv|avi|webm)$', indFiles):
 					magic = ImportVideo.processVideo(root, indFiles, file_id)
 					for sql in magic:
+						print(sql)
 						cur.execute(sql)
 
 		#print('   Completed ' + str(totalFileAdded) + ' files')	

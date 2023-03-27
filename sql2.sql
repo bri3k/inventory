@@ -36,13 +36,13 @@ CREATE TABLE manga (
 CREATE TABLE tag (
    tag_id integer primary key autoincrement, 
    file_id int references file(file_id) on delete cascade, 
-   tag varchar(255)
+   tag varchar(255), value text
 );
 
 CREATE TABLE video (
 	video_id integer primary key autoincrement, 
 	file_id int references file(file_id) on delete cascade,
-	width int, height int, codec text, pixel_format text, duration text
+	width int, height int, codec text, pixel_format text, duration text, bit_rate text
 );
 
 CREATE TABLE audio (
