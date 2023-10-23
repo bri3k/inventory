@@ -3,7 +3,7 @@
 # Manga Inventory
 #
 # v0.2
-# 9-28-2022
+# 10-23-2023
 #
 # Inventories all manga files in a folder and imports into a DB
 #
